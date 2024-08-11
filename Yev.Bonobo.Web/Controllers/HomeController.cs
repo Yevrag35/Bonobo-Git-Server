@@ -20,14 +20,21 @@ namespace Yev.Bonobo.Controllers
 
         public async Task<IActionResult> Index()
         {
-            UserModel? model = null;
-            if (this.HttpContext.Items.TryGetValue(nameof(UserModel), out object? userObj) &&
-                userObj is UserModel user)
-            {
-                model = user;
-            }
+            //UserModel? model = null;
+            //if (this.HttpContext.Items.TryGetValue(nameof(UserModel), out object? userObj) &&
+            //    userObj is UserModel user)
+            //{
+            //    model = user;
+            //}
 
-            return this.View(model);
+            var dbCtx = this.HttpContext.RequestServices.GetRequiredService<GitDbContext>();
+            var defRepo = await dbCtx.Repos.AsNoTracking()
+                .Where(x => x.Name == "default")
+                .OrderBy(x => x.Id)
+                .FirstOrDefaultAsync(this.HttpContext.RequestAborted)
+                .ConfigureAwait(false);
+
+            return this.View(defRepo);
         }
 
         public IActionResult Privacy()

@@ -1,11 +1,28 @@
 ﻿@using Yev.Bonobo.Database.Entities
-@model UserModel?
+@model RepoDefinition
 @{
     ViewData["Title"] = "Home Page";
-    string name = Model?.UserName ?? "Guest";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome @name</h1>
+    <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+<div>
+    <h2>Repos</h2>
+    <table class="table">
+        <thead>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Path</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id.ToString()</td>
+                <td>@Model.DisplayName</td>
+                <td>@Model.Path</td>
+            </tr>
+        </tbody>
+    </table>
 </div>

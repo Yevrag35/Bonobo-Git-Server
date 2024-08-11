@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Yev.Bonobo.Database;
 
@@ -10,9 +11,11 @@ using Yev.Bonobo.Database;
 namespace Yev.Bonobo.Migrations
 {
     [DbContext(typeof(GitDbContext))]
-    partial class GitDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240811162216_addDefaultRepoAndTag")]
+    partial class addDefaultRepoAndTag
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
