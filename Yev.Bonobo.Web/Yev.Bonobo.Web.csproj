@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<RootNamespace>Yev.Bonobo</RootNamespace>
+		<Configurations>Debug;Release;Design</Configurations>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)'=='Design'">
+	  <DefineConstants>$(DefineConstants);DESIGN</DefineConstants>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="AttributeDI.Attributes.DependencyAssemblyAttribute" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(Configuration)' != 'Release'">
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+		</Content>
+		<Content Update="appsettings.Development.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' == 'Release'">
+		<Content Update="appsettings.json">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+		</Content>
+		<Content Update="appsettings.Development.json">
+			<CopyToOutputDirectory>Never</CopyToOutputDirectory>
+			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
+		</Content>
+	</ItemGroup>
+	<ItemGroup Condition="'$(Configuration)' == 'Release'" />
+
+	<ItemGroup>
+		<PackageReference Include="AttributeDependencyInjection" Version="1.0.0" />
+		<PackageReference Include="CommonMark.NET" Version="0.15.1" />
+		<PackageReference Include="LibGit2Sharp" Version="0.30.0" />
+		<PackageReference Include="MG.Extensions.Strings" Version="1.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.7" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="8.0.7" NoWarn="NU1605" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.7" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.7" />
+		<PackageReference Include="Microsoft.Extensions.Options.DataAnnotations" Version="8.0.0" />
+		<PackageReference Include="Microsoft.Identity.Web" Version="3.0.1" />
+		<PackageReference Include="Microsoft.Identity.Web.MicrosoftGraph" Version="3.0.1" />
+		<PackageReference Include="Microsoft.Identity.Web.UI" Version="3.0.1" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.7">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
+		<PackageReference Include="System.Composition.TypedParts" Version="8.0.0" />
+	</ItemGroup>
+
+</Project>
