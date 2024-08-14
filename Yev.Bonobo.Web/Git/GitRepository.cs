@@ -10,6 +10,11 @@ public sealed class GitRepository : ViolatileGitObject
 
     public GitRepository(RepoDefinition definition)
     {
+        if (!Path.Exists(definition.Path))
+        {
+            throw new DirectoryNotFoundException($"Repository path not found: {definition.Path}");
+        }
+
         _repo = new(definition.Path);
     }
 }

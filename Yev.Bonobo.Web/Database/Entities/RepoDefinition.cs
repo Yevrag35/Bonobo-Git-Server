@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Yev.Bonobo.Database.Entities;
 
@@ -8,8 +9,8 @@ public sealed class RepoDefinition : IDbEntity<RepoDefinition>
     [Key]
     public Guid Id { get; set; }
     public string? DisplayName { get; set; }
-    public required string Name { get; set; }
-    public required string Path { get; set; }
+    public string Name { get; set; }
+    public string Path { get; set; }
     public string? Description { get; set; }
     public bool AllowAnonymous { get; set; }
     public bool AuditPushUser { get; set; }

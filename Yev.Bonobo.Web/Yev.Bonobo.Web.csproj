@@ -5,12 +5,22 @@
 		<Nullable>enable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<RootNamespace>Yev.Bonobo</RootNamespace>
-		<Configurations>Debug;Release;Design</Configurations>
+		<Configurations>Debug;Release</Configurations>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)'=='Design'">
-	  <DefineConstants>$(DefineConstants);DESIGN</DefineConstants>
-	</PropertyGroup>
+	<ItemGroup>
+		<Using Include="System.Buffers" />
+		<Using Include="System.Collections.Frozen" />
+		<Using Include="System.Collections.Immutable" />
+		<Using Include="System.Diagnostics" />
+		<Using Include="System.Diagnostics.CodeAnalysis" />
+		<Using Include="System.Text" />
+		<Using Include="System.Text.Json" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Validation\DirectoryValidationAttribute.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<AssemblyAttribute Include="AttributeDI.Attributes.DependencyAssemblyAttribute" />
@@ -34,7 +44,9 @@
 			<CopyToPublishDirectory>Never</CopyToPublishDirectory>
 		</Content>
 	</ItemGroup>
-	<ItemGroup Condition="'$(Configuration)' == 'Release'" />
+	<ItemGroup>
+	  <None Include="Validation\DirectoryValidationAttribute.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="AttributeDependencyInjection" Version="1.0.0" />

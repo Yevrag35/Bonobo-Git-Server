@@ -20,13 +20,6 @@ namespace Yev.Bonobo.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //UserModel? model = null;
-            //if (this.HttpContext.Items.TryGetValue(nameof(UserModel), out object? userObj) &&
-            //    userObj is UserModel user)
-            //{
-            //    model = user;
-            //}
-
             var dbCtx = this.HttpContext.RequestServices.GetRequiredService<GitDbContext>();
             var defRepo = await dbCtx.Repos.AsNoTracking()
                 .Where(x => x.Name == "default")
